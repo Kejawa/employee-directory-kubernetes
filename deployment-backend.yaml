@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-backend
+  namespace: production
+  labels:
+    app: employee-api
+    tier: backend
+    environment: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employee-api
+  template:
+    metadata:
+      labels:
+        app: employee-api
+        tier: backend
+        environment: production
+    spec:
+      containers:
+        - name: backend
+          image: kejawa/employee-backend:latest
+          ports:
+            - containerPort: 3000
+          envFrom: 
+            - configMapRef:
+                name: employee-config
+            - secretRef:
+                name: employee-secret
+
+          livenessProbe: # restarts a crashed container.
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+
+          readinessProbe: # stops traffic to a pod that's not ready yet
+            httpGet:
+              path: /health
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 5     

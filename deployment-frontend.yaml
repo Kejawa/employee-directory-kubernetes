@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-frontend
+  namespace: production
+  labels:
+    app: employee-frontend
+    tier: frontend
+    environment: production
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: employee-frontend
+  template:
+    metadata:
+      labels:
+        app: employee-frontend
+        tier: frontend
+        environment: production
+    spec:
+      containers:
+        - name: frontend
+          image: kejawa/employee-frontend:latest
+          ports:
+            - containerPort: 80
