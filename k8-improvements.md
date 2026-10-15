@@ -6,7 +6,7 @@ I built on my existing Employee Directory Kubernetes project. In the previous st
 
 This update focuses on improving how the application is exposed, monitored, secured, and managed within the cluster.
 
-## Existing Lab Environment
+## Existing Lab Environment 
 
 The project continues to use my existing homelab infrastructure.
 
@@ -217,7 +217,7 @@ These commands help investigate issues such as:
 - Misconfigured environment variables.
 - Application routing failures.
 
- 
+
 ## Conclusion
 
 The focus shifted toward operating workloads more responsibly through routing, monitoring, resource management, health checks, scaling, access control, and troubleshooting.
