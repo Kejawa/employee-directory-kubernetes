@@ -22,6 +22,14 @@ spec:
       containers:
         - name: backend
           image: kejawa/employee-backend:latest
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+              
           ports:
             - containerPort: 3000
           envFrom: 
